@@ -1,4 +1,7 @@
 .idea
-node_modules
 .DS_Store
+
+database.txt
+
+node_modules
 build

@@ -1,0 +1,17 @@
+{
+	"name": "@zenflux/demos",
+	"version": "0.0.0-alpha.0",
+	"description": "ZenFlux demos, demonstrate usage of `@zenflux/core` and `@zenflux/redux`",
+	"scripts": {
+		"shop-catalog:backends:php:vanila:start": "cd ./shop-catalog/backends/php/simple-vanilla/ && ./run"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/zenflux/demos.git"
+	},
+	"keywords": [
+		"ZenFlux"
+	],
+	"author": "Leonid Vinikov",
+	"license": "MIT"
+}
