@@ -1,8 +1,4 @@
-import { Slice } from "@reduxjs/toolkit";
-
 import ZenRedux from "@zenflux/redux";
-
-import { IWelcomeReducers, IWelcomeState } from "./model";
 
 import * as data from './data/';
 

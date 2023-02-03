@@ -1,9 +1,10 @@
+build
+node_modules
+backups
+
 .idea
 .DS_Store
 
 database.txt
 
-node_modules
-build
 link.config.json
-backups

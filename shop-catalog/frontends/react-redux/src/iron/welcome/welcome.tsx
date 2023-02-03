@@ -17,7 +17,7 @@ function Error(): JSX.Element {
 
             setError( controller.error )
         }
-    } );
+    }, [ error ] );
 
     return (
         <>

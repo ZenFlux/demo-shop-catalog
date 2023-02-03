@@ -4,7 +4,7 @@ import ZenCore from "@zenflux/core";
 
 import './db-connection-setup.css';
 
-const DbConnectionSetup = () => {
+const DbConnectionSetup = (): JSX.Element => {
     const [ host, setHost ] = useState( "localhost" );
     const [ port, setPort ] = useState( "3306" );
     const [ username, setUsername ] = useState( "" );
@@ -31,7 +31,7 @@ const DbConnectionSetup = () => {
             return;
         }
 
-        const result = await ZenCore.managers.data.create( 'Welcome/Data/ConfigureDB', {
+        const promise = ZenCore.managers.data.create( 'Welcome/Data/ConfigureDB', {
             host,
             port,
             username,
@@ -40,15 +40,23 @@ const DbConnectionSetup = () => {
             skip_create: skipDBCreation,
         } );
 
-        if ( result.error ) {
-            setMessage( result.message );
-        } else if ( result.success ) {
-            setMessage( "Database connection established successfully" );
+        promise.then( ( response: any ) => {
+            if ( response.success ) {
+                setMessage( "Database connection established successfully" );
 
-            setTimeout( () => globalThis.location.reload(), 2000 );
-        } else {
-            setMessage( "Unknown error" );
-        }
+                return setTimeout( () => globalThis.location.reload(), 2000 );
+            }
+
+            setMessage( 'Something went wrong.' );
+        } );
+
+        promise.catch( ( result: any ) => {
+            if ( result.error ) {
+                setMessage( result.message );
+            } else {
+                setMessage( "Unknown error" );
+            }
+        } );
     };
 
     return (

@@ -43,27 +43,17 @@ git clone https://github.com/ZenFlux/demos
 
 ### Enter repo folder:
 ```shell
-cd demos/shop-catalog
+npm install
 ```
 
 ### Run the backend:
 ```shell
-./backends/php-vanilla/run.sh
+npm run shop-catalog:backends:php:vanila:start
 ```
 
 ### Turn on new session & enter frontend folder:
 ```shell
-cd demos/shop-catalog/frontends/react-shop-catalog
-```
-
-### Install dependencies:
-```shell
-npm install
-```
-
-### Run the frontend:
-```shell
-npm start
+npm run shop-catalog:frontends:react:start
 ```
 
 ### Enter the frontend:
