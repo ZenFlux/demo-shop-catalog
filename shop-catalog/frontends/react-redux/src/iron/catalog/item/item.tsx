@@ -2,21 +2,21 @@ import React, { ChangeEvent } from "react";
 
 import ZenCore from "@zenflux/core";
 
-import { ICatalogItemProps } from "../model";
+import { ICatalogItemProps } from "./model";
 
-import './item.css';
+import "./item.css";
 
 /**
  * setAmount in state here for not causing re-rendering of the whole catalog.
  */
-export const Item = React.memo(( data: ICatalogItemProps ) => {
+function ItemComponent( data: ICatalogItemProps ): JSX.Element {
     const { id, name, price } = data,
-        src = 'img/product-' + id + '.jpg';
+        src = "img/product-" + id + ".jpg";
 
     const onChange = ( event: ChangeEvent<HTMLInputElement> ) => {
-        const amount = parseInt( event?.target?.value || '1' );
+        const amount = parseInt( event?.target?.value || "1" );
 
-        ZenCore.managers.commands.run( 'Catalog/Item/Commands/SetAmount', {
+        ZenCore.managers.commands.run( "Catalog/Item/Commands/SetAmount", {
             ...data,
             amount
         } );
@@ -28,14 +28,14 @@ export const Item = React.memo(( data: ICatalogItemProps ) => {
 
     return (
         <div className="product">
-            <img src={ src } alt={ 'product' + id }/>
+            <img src={ src } alt={ "product" + id }/>
             <h4 className="name color-secondary">{ name }</h4>
 
             <div className="footer">
                 <h5>Price: <span className="price">${ price }$</span></h5>
                 <div className="row">
                     <button
-                        onClick={ () => ZenCore.managers.commands.run( 'Catalog/Item/Commands/Add', {
+                        onClick={ () => ZenCore.managers.commands.run( "Catalog/Item/Commands/Add", {
                             ...data,
                             amount,
                         } ) }
@@ -47,6 +47,6 @@ export const Item = React.memo(( data: ICatalogItemProps ) => {
             </div>
         </div>
     );
-} );
+}
 
-export default Item;
+export default React.memo( ItemComponent );

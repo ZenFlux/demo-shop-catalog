@@ -7,5 +7,5 @@ export interface SidebarState {
 export interface ISidebarReducers extends SliceCaseReducers<SidebarState> {
     activate: CaseReducer<SidebarState, PayloadAction<SidebarState>>;
     deactivate: CaseReducer<SidebarState, PayloadAction<SidebarState>>;
-    toggle: CaseReducer<SidebarState, PayloadAction<void>>;
+    toggle: CaseReducer<SidebarState, PayloadAction>;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-import ZenCore from "@zenflux/core"
+import ZenCore from "@zenflux/core";
 
 import Item from "./item/item";
 
@@ -9,13 +9,10 @@ import CatalogController from "@internal/iron/catalog/controller";
 import PageTransaction from "@internal/components/transaction/page-transaction";
 import Pagination from "@internal/components/pagination/pagination";
 
-import {
-    CATALOG_TRANSACTION_TIMEOUT,
-    CATALOG_MAX_VISIBLE_PAGES,
-} from "./constants";
+import { CATALOG_MAX_VISIBLE_PAGES, CATALOG_TRANSACTION_TIMEOUT, } from "./constants";
 
 export default function Catalog() {
-    const controller = ZenCore.managers.controllers.get( 'Catalog/Controller' ) as CatalogController,
+    const controller = ZenCore.managers.controllers.get( "Catalog/Controller" ) as CatalogController,
         state = controller.getState(),
         items = state.items,
         pagination = state.pagination;

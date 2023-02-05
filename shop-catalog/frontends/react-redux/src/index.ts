@@ -8,30 +8,20 @@ import { setResponseHandlers } from "./response-handlers";
 
 import WelcomeController from "./iron/welcome/controller";
 
-import './css/index.css';
-
-ZenCore.initialize( {
-    baseURL: 'http://localhost:8000',
-} as IAPIConfig );
-
-ZenRedux.initialize( {} );
-
-setResponseHandlers();
-
-ZenCore.managers.controllers.register( new WelcomeController() );
+import "./css/index.css";
 
 async function initApp( data: any ) {
     if ( data.success ) {
-        const App = ( await import( './app' ) ).default;
+        const App = ( await import( "./app" ) ).default;
 
-        return appInit( App )
+        return appInit( App );
     }
 
-    alert( 'Something went wrong' );
+    alert( "Something went wrong" );
 }
 
 async function initWelcome( error: any ) {
-    const WelcomeComponent = ( await import( './iron/welcome/welcome' ) ).default;
+    const WelcomeComponent = ( await import( "./iron/welcome/welcome" ) ).default;
 
     const promise = appInit( WelcomeComponent, {
         shouldSetupHooks: false,
@@ -40,22 +30,32 @@ async function initWelcome( error: any ) {
 
     promise.then( () => {
         switch ( error.code ) {
-            case 'db_not_configured':
-                ZenRedux.managers.routes.to( 'Welcome/Controller/Configure' );
-                break;
+        case "db_not_configured":
+            ZenRedux.managers.routes.to( "Welcome/Controller/Configure" );
+            break;
 
-            default:
-                if ( error instanceof Error ) {
-                    error = {
-                        message: error.message,
-                    };
-                }
+        default:
+            if ( error instanceof Error ) {
+                error = {
+                    message: error.message,
+                };
+            }
 
-                ZenRedux.managers.routes.to( 'Welcome/Controller/Error', { error } );
+            ZenRedux.managers.routes.to( "Welcome/Controller/Error", { error } );
         }
     } );
 }
 
-ZenCore.managers.data.get( 'Welcome/Data/Index' )
+ZenCore.initialize( {
+    baseURL: "http://localhost:8000",
+} as IAPIConfig );
+
+ZenRedux.initialize( {} );
+
+setResponseHandlers();
+
+ZenCore.managers.controllers.register( new WelcomeController() );
+
+ZenCore.managers.data.get( "Welcome/Data/Index" )
     .then( initApp )
     .catch( initWelcome );

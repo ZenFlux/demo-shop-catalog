@@ -2,7 +2,7 @@ import ZenCore from "@zenflux/core";
 
 export class SetAmount extends ZenCore.commandBases.CommandPublic {
     static getName() {
-        return 'Catalog/Item/Commands/SetAmount';
+        return "Catalog/Item/Commands/SetAmount";
     }
 
     apply() {

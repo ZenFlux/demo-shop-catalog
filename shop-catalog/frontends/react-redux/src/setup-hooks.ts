@@ -1,7 +1,8 @@
 import ZenCore from "@zenflux/core";
 import ZenRedux from "@zenflux/redux";
 
-import { IDataCommandAddArgs } from "./iron/cart/data/add";
+import { IDataCommandCartAddArgs } from "./iron/cart/model";
+
 import { IItem } from "./iron/cart/item/model";
 
 import CartController from "./iron/cart/controller";
@@ -11,29 +12,29 @@ import CartController from "./iron/cart/controller";
  * All other hooks can be in `Controller.setupHooks()` method.
  */
 function setupHooks() {
-    const cartController = ZenCore.managers.controllers.get( 'Cart/Controller' ) as CartController;
+    const cartController = ZenCore.managers.controllers.get( "Cart/Controller" ) as CartController;
 
     // On adding item from catalog.
-    ZenCore.managers.internal.onAfter( 'Catalog/Internal/Add', ( args: any ) => {
-        const item: IDataCommandAddArgs = {
+    ZenCore.managers.internal.onAfter( "Catalog/Internal/Add", ( args: any ) => {
+        const item: IDataCommandCartAddArgs = {
             id: args.id,
             amount: args.amount,
         };
 
         // Tell server add item to cart.
-        ZenCore.managers.data.create( 'Cart/Data/Add', item ).then( () => {
+        ZenCore.managers.data.create( "Cart/Data/Add", item ).then( () => {
             // Add item to cart.
-            ZenCore.managers.internal.run( 'Cart/Internal/Add', args );
+            ZenCore.managers.internal.run( "Cart/Internal/Add", args );
         } );
 
         // Toggle sidebar and show cart.
-        ZenCore.managers.commands.run( 'UI/Sidebar/Commands/Toggle' );
+        ZenCore.managers.commands.run( "Layout/Sidebar/Commands/Toggle" );
     } );
 
     // On receive catalog.
-    ZenCore.managers.data.onAfterOnce( 'Catalog/Data/Index', () => {
+    ZenCore.managers.data.onAfterOnce( "Catalog/Data/Index", () => {
         // Request the cart from the server.
-        ZenCore.managers.data.get( 'Cart/Data/Index' ).then( async ( cartData: IItem[] ) => {
+        ZenCore.managers.data.get( "Cart/Data/Index" ).then( async ( cartData: IItem[] ) => {
             const missingItemsIds = [],
                 orderedCartData: { [ key: number ]: IItem } = {};
 
@@ -43,7 +44,7 @@ function setupHooks() {
 
             // After we know what in the cart we need add missing data like, name, price, etc... from local catalog.
             for ( const cartItem of cartData ) {
-                const catalogItem = await ZenCore.managers.data.get( 'Catalog/Data/Index',
+                const catalogItem = await ZenCore.managers.data.get( "Catalog/Data/Index",
                     { query: { id: cartItem.id } },
                     { local: true } // Data from memory not from the server.
                 );
@@ -61,7 +62,7 @@ function setupHooks() {
 
             // If we have missing items, we need to request them from the server.
             if ( missingItemsIds.length ) {
-                const missingItems = await ZenCore.managers.data.get( 'Catalog/Data/Get', {
+                const missingItems = await ZenCore.managers.data.get( "Catalog/Data/Get", {
                     ids: missingItemsIds,
                 } );
 
@@ -79,7 +80,7 @@ function setupHooks() {
                 cartController.getSlice().actions.setItems( Object.values( orderedCartData ) )
             );
 
-            await ZenCore.managers.internal.run( 'Cart/Internal/UpdateTotal' );
+            await ZenCore.managers.internal.run( "Cart/Internal/UpdateTotal" );
         } );
     } );
 }

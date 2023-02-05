@@ -1,10 +1,10 @@
 {
-	"compilerOptions": {
-		"baseUrl": ".",
-		"paths": {
-			"@internal/*": [
-				"./src/*"
-			]
-		}
-	}
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@internal/*": [
+                "./src/*"
+            ]
+        }
+    }
 }

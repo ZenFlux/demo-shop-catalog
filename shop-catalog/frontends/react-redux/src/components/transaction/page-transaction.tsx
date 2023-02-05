@@ -1,11 +1,8 @@
 import React from "react";
 
-import "./page-transaction.css";
+import { IPageTransactionProps } from "./model";
 
-export interface IPageTransactionProps {
-    timeout: number;
-    children: React.ReactNode;
-}
+import "./page-transaction.css";
 
 export default function PageTransaction( props: IPageTransactionProps ) {
     const [ transition, setTransition ] = React.useState( true );
@@ -21,7 +18,7 @@ export default function PageTransaction( props: IPageTransactionProps ) {
     }, [ props.children, props.timeout ] );
 
     return (
-        <div className={`page-transition ${ transition && 'out' }`}>
+        <div className={ `page-transition ${ transition && "out" }` }>
             { props.children }
         </div>
     );

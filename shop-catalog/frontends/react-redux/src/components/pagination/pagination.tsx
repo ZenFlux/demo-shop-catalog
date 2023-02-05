@@ -3,7 +3,7 @@ import React from "react";
 import ZenCore from "@zenflux/core";
 import ZenRedux from "@zenflux/redux";
 
-import { ExtendType, IPaginationProps } from "@internal/components/pagination/model";
+import { ExtendType, IPaginationProps } from "./model";
 
 import "./pagination.css";
 
@@ -14,26 +14,25 @@ export default function Pagination( props: IPaginationProps ): JSX.Element {
     const prevOffset = ZenRedux.hooks.usePrevious( offset );
 
     const onExtend = ( type: ExtendType ) => {
-        ZenCore.managers.commands.run( 'Components/Pagination/Controller/Extend', {
+        ZenCore.managers.commands.run( "Components/Pagination/Controller/Extend", {
             type,
             offsetState,
             maxVisiblePages: props.maxVisiblePages,
             controller: props.controller,
         } );
-    }
+    };
 
     const onChange = ( page: number ) => {
-        ZenCore.managers.commands.run( 'Components/Pagination/Controller/Set', {
+        ZenCore.managers.commands.run( "Components/Pagination/Controller/Set", {
             page,
             controller: props.controller,
         } );
-    }
-
-    const inRange = function ( active: number, min: number, max: number ) {
-        return ( active >= min && active < max )
     };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const inRange = function ( active: number, min: number, max: number ) {
+        return ( active >= min && active < max );
+    };
+
     const updateExtendOffset = () => {
         // TODO: Should be a better way, prevOffset not the best practice.
         if ( prevOffset !== undefined && offset !== prevOffset ) {
@@ -60,7 +59,7 @@ export default function Pagination( props: IPaginationProps ): JSX.Element {
         if ( prevOffset !== offsetRange ) {
             setOffset( offsetRange );
         }
-    }
+    };
 
     // TODO: Check other hooks compatibility to here.
     React.useEffect( () => updateExtendOffset(), [ offset, updateExtendOffset ] );
@@ -79,38 +78,38 @@ export default function Pagination( props: IPaginationProps ): JSX.Element {
         }
 
         pageItems.push(
-            <li key={ id } className={ `page-item ${ props.currentPage === id ? 'active' : '' }` }>
-                <button className='page-link' onClick={ () => onChange( id ) }>{ id + 1 }</button>
+            <li key={ id } className={ `page-item ${ props.currentPage === id ? "active" : "" }` }>
+                <button className="page-link" onClick={ () => onChange( id ) }>{ id + 1 }</button>
             </li>
-        )
+        );
     }
 
     const shouldExtendNext = ! breakFlag && ( offset + props.totalPages ) >= props.maxVisiblePages,
         shouldExtendPrev = offset >= props.maxVisiblePages;
 
-    const prev = <li className='page-item'>
-        <button disabled={ props.currentPage === 0 } className='page-link'
-                onClick={ () => onChange( props.currentPage - 1 ) }>«
+    const prev = <li className="page-item">
+        <button disabled={ props.currentPage === 0 } className="page-link"
+            onClick={ () => onChange( props.currentPage - 1 ) }>«
         </button>
     </li>;
 
     const prevExtend = shouldExtendPrev ?
-        <li className='page-item'>
-            <button className='page-link' onClick={ () => onExtend( 'prev' ) }>←</button>
+        <li className="page-item">
+            <button className="page-link" onClick={ () => onExtend( "prev" ) }>←</button>
         </li> : null;
 
-    const next = shouldExtendNext ? <li className='page-item'>
-        <button className='page-link' onClick={ () => onExtend( 'next' ) }>→</button>
+    const next = shouldExtendNext ? <li className="page-item">
+        <button className="page-link" onClick={ () => onExtend( "next" ) }>→</button>
     </li> : null;
 
-    const nextExtend = <li className='page-item'>
+    const nextExtend = <li className="page-item">
         <button disabled={ props.currentPage + 1 >= props.totalPages }
-                className='page-link' onClick={ () => onChange( props.currentPage + 1 ) }>»
+            className="page-link" onClick={ () => onChange( props.currentPage + 1 ) }>»
         </button>
-    </li>
+    </li>;
 
     return (
-        <div className={ `pagination` }>
+        <div className={ "pagination" }>
             { prev }
             { prevExtend }
             { pageItems }

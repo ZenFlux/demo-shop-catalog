@@ -1,10 +1,10 @@
 import ZenCore from "@zenflux/core";
 
-import * as commands from './commands';
+import * as commands from "./commands";
 
 export class PaginationController extends ZenCore.core.Controller {
     static getName() {
-        return 'Components/Pagination/Controller';
+        return "Components/Pagination/Controller";
     }
 
     getCommands() {

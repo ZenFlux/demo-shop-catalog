@@ -2,18 +2,18 @@
 	"name": "@zenflux/demos",
 	"version": "0.0.0-alpha.0",
 	"description": "ZenFlux demos, demonstrate usage of `@zenflux/core` and `@zenflux/redux`",
-	"scripts": {
-		"postinstall": "cd shop-catalog/frontends/react-redux/ && npm install",
-		"shop-catalog:backends:php:vanila:start": "cd ./shop-catalog/backends/php/simple-vanilla/ && ./run",
-		"shop-catalog:frontends:react:start": "cd ./shop-catalog/frontends/react-redux/ && npm start"
-	},
+	"keywords": [
+		"ZenFlux"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/zenflux/demos.git"
 	},
-	"keywords": [
-		"ZenFlux"
-	],
+	"license": "MIT",
 	"author": "Leonid Vinikov",
-	"license": "MIT"
+	"scripts": {
+		"postinstall": "cd shop-catalog/frontends/react-redux/ && npm install",
+		"shop-catalog:backends:php:vanila:start": "cd ./shop-catalog/backends/php/simple-vanilla/ && ./run",
+		"shop-catalog:frontends:react:start": "cd ./shop-catalog/frontends/react-redux/ && npm start"
+	}
 }

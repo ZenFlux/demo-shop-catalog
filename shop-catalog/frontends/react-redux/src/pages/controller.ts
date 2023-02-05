@@ -5,18 +5,18 @@ import CatalogController from "@internal/iron/catalog/controller";
 
 export class PagesController extends ZenRedux.core.RouterController {
     static getName() {
-        return 'Pages/Controller';
+        return "Pages/Controller";
     }
 
-    getRoutes(): {} {
+    getRoutes() {
         return {
-            'Catalog': () => {
-                const catalogController = ZenCore.managers.controllers.get( 'Catalog/Controller' ) as CatalogController;
+            "Catalog": () => {
+                const catalogController = ZenCore.managers.controllers.get( "Catalog/Controller" ) as CatalogController;
 
                 catalogController.getCatalog();
             },
-            'Checkout': () => {},
-        }
+            "Checkout": () => {},
+        };
     }
 }
 

@@ -4,24 +4,17 @@ import ZenRedux from "@zenflux/redux";
 import CartController from "../controller";
 
 import { IItem } from "../item/model";
-
-export interface IInternalCommandAddArgs {
-    id: number;
-    name: string;
-    price: string;
-    amount?: number;
-}
+import { IInternalCommandCartAddArgs } from "../model";
 
 export class Add extends ZenCore.commandBases.CommandInternal {
     static getName() {
-        return 'Cart/Internal/Add';
+        return "Cart/Internal/Add";
     }
 
-    async apply( args: IInternalCommandAddArgs ) {
-        // Hooks that applied on the command will face IInternalCommandAddArgs. so it have to be free.
+    async apply( args: IInternalCommandCartAddArgs ) {
         args = Object.assign( {}, args );
 
-        const controller = ZenCore.managers.controllers.get( 'Cart/Controller' ) as CartController,
+        const controller = ZenCore.managers.controllers.get( "Cart/Controller" ) as CartController,
             { items } = controller.getState(),
             item = items.find( ( item: IItem ) => item.id === args.id ),
             slice = controller.getSlice(),
@@ -34,7 +27,7 @@ export class Add extends ZenCore.commandBases.CommandInternal {
         // Add or update item in cart.
         item ?
             store.dispatch( slice.actions.updateItem( args ) ) :
-            store.dispatch( slice.actions.addItem( args ) )
+            store.dispatch( slice.actions.addItem( args ) );
     }
 
 }

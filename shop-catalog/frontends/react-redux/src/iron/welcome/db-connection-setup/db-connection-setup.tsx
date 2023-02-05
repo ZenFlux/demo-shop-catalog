@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import ZenCore from "@zenflux/core";
 
-import './db-connection-setup.css';
+import "./db-connection-setup.css";
 
 const DbConnectionSetup = (): JSX.Element => {
     const [ host, setHost ] = useState( "localhost" );
@@ -31,12 +31,12 @@ const DbConnectionSetup = (): JSX.Element => {
             return;
         }
 
-        const promise = ZenCore.managers.data.create( 'Welcome/Data/ConfigureDB', {
+        const promise = ZenCore.managers.data.create( "Welcome/Data/ConfigureDB", {
             host,
             port,
             username,
             password,
-            'database_name': database,
+            "database_name": database,
             skip_create: skipDBCreation,
         } );
 
@@ -47,7 +47,7 @@ const DbConnectionSetup = (): JSX.Element => {
                 return setTimeout( () => globalThis.location.reload(), 2000 );
             }
 
-            setMessage( 'Something went wrong.' );
+            setMessage( "Something went wrong." );
         } );
 
         promise.catch( ( result: any ) => {
@@ -111,9 +111,9 @@ const DbConnectionSetup = (): JSX.Element => {
                 <div className="form-group">
                     <label id="skip_db_creation" htmlFor="skip_db_creation">Skip DB Creation:</label>
                     <input type="checkbox"
-                           id="skip_create"
-                           checked={ skipDBCreation }
-                           onChange={ ( event ) => setSkipDBCreation( event.target.checked ) }
+                        id="skip_create"
+                        checked={ skipDBCreation }
+                        onChange={ ( event ) => setSkipDBCreation( event.target.checked ) }
                     />
                 </div>
                 <button type="submit">Connect</button>

@@ -3,31 +3,21 @@ import ZenRedux from "@zenflux/redux";
 
 import CatalogController from "@internal/iron/catalog/controller";
 
-import { ICatalogItem } from "../model";
-
-export interface IDataCommandIndexArgs {
-    page: number;
-    query?: {
-        id: number
-    }
-}
-
-export interface IDataCommandOptions {
-    local: boolean;
-}
+import { IDataCommandCatalogIndexArgs, IDataCommandCatalogIndexOptions } from "../model";
+import { ICatalogItem } from "@internal/iron/catalog/item/model";
 
 export class Index extends ZenCore.commandBases.CommandData {
     static localCatalog: ICatalogItem[] = [];
 
     static getName() {
-        return 'Catalog/Data/Index';
+        return "Catalog/Data/Index";
     }
 
     getEndpoint() {
-        return 'catalog/index/{page}';
+        return "catalog/index/{page}";
     }
 
-    apply( args = {} as IDataCommandIndexArgs, options = {} as IDataCommandOptions ) : any {
+    apply( args = {} as IDataCommandCatalogIndexArgs, options = {} as IDataCommandCatalogIndexOptions ): any {
         const { query } = args;
 
         if ( options.local && Index.localCatalog.length ) {
@@ -51,8 +41,8 @@ export class Index extends ZenCore.commandBases.CommandData {
 
     onBeforeApply() {
         // Should be in the controller, because its bypassing dispatch.
-        const args = this.getArgs() as IDataCommandIndexArgs,
-            options = this.getOptions() as IDataCommandOptions;
+        const args = this.getArgs() as IDataCommandCatalogIndexArgs,
+            options = this.getOptions() as IDataCommandCatalogIndexOptions;
 
         if ( args.query || options.local ) {
             return;
@@ -66,4 +56,4 @@ export class Index extends ZenCore.commandBases.CommandData {
     }
 }
 
-export { Get } from './get';
+export { Get } from "./get";

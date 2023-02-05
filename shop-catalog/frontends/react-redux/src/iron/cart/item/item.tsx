@@ -1,13 +1,15 @@
-import ZenCore from '@zenflux/core';
+import React from "react";
+
+import ZenCore from "@zenflux/core";
 
 import { IItem } from "../item/model";
 
 import { CART_FRACTION_DIGITS } from "../constants";
 
-export default function Item( props: IItem ) {
+export default function Item( props: IItem ): JSX.Element {
     const sum = parseFloat( props.price ) * ( props.amount || 1 ),
         removeItem = () =>
-            ZenCore.managers.commands.run( 'Cart/Item/Commands/Remove', { id: props.id } );
+            ZenCore.managers.commands.run( "Cart/Item/Commands/Remove", { id: props.id } );
 
     return (
         <li className="item" data-id={ props.id }>
@@ -26,5 +28,5 @@ export default function Item( props: IItem ) {
 
             <div className="clearfix"/>
         </li>
-    )
+    );
 }

@@ -5,11 +5,11 @@ import SidebarController from "@internal/layout/sidebar/controller";
 
 export class Toggle extends ZenCore.commandBases.CommandPublic {
     static getName() {
-        return 'UI/Sidebar/Commands/Toggle';
+        return "Layout/Sidebar/Commands/Toggle";
     }
 
     apply( args = {} ) {
-        const controller = ZenCore.managers.controllers.get( 'UI/Sidebar/Controller' ) as SidebarController;
+        const controller = ZenCore.managers.controllers.get( "Layout/Sidebar/Controller" ) as SidebarController;
 
         // Toggle the sidebar.
         ZenRedux.store.getStore().dispatch(

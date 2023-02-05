@@ -1,23 +1,24 @@
 import { CaseReducer, PayloadAction, SliceCaseReducers } from "@reduxjs/toolkit";
+import { ICatalogItem } from "./item/model";
 
-export interface ICatalogItemProps extends ICatalogItem {
-    key: string;
+export interface IDataCommandCatalogIndexArgs {
+    page: number;
+    query?: {
+        id: number
+    }
 }
 
-export interface ICatalogItem {
-    id: number;
-    name?: string;
-    price?: number;
-    amount?: number;
+export interface IDataCommandCatalogIndexOptions {
+    local: boolean;
 }
 
 export interface ICatalogState {
     items: ICatalogItem[];
-    pagination: IPaginationData;
+    pagination: ICatalogPaginationData;
     prevPage: number;
 }
 
-export interface IPaginationData { // TODO: move to @internal/components/pagination/model
+export interface ICatalogPaginationData {
     current: number;
     pages: number;
     perPage: number,
@@ -25,7 +26,7 @@ export interface IPaginationData { // TODO: move to @internal/components/paginat
 }
 
 export interface ICatalogReducers extends SliceCaseReducers<ICatalogState> {
-    setPagination: CaseReducer<ICatalogState, PayloadAction<IPaginationData>>
+    setPagination: CaseReducer<ICatalogState, PayloadAction<ICatalogPaginationData>>
     setItems: CaseReducer<ICatalogState, PayloadAction<ICatalogItem[]>>;
     clearItems: CaseReducer<ICatalogState>;
 }

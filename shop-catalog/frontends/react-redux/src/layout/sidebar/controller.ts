@@ -4,11 +4,11 @@ import ZenRedux from "@zenflux/redux";
 
 import { ISidebarReducers, SidebarState } from "./model";
 
-import * as commands from './commands/';
+import * as commands from "./commands/";
 
 export class SidebarController extends ZenRedux.core.Controller {
     static getName() {
-        return 'UI/Sidebar/Controller';
+        return "Layout/Sidebar/Controller";
     }
 
     getCommands() {
@@ -18,18 +18,18 @@ export class SidebarController extends ZenRedux.core.Controller {
     getSliceInitialState(): SidebarState {
         return {
             status: false,
-        }
+        };
     }
 
     getReducers(): ISidebarReducers {
         return {
-            activate: ( state: SidebarState ) => {
+            activate: ( state ) => {
                 state.status = true;
             },
-            deactivate: ( state: SidebarState ) => {
+            deactivate: ( state ) => {
                 state.status = false;
             },
-            toggle: ( state: SidebarState ) => {
+            toggle: ( state ) => {
                 state.status = ! state.status;
             }
         };

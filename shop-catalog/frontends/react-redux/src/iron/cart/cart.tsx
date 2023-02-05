@@ -7,11 +7,11 @@ import { ICartState } from "@internal/iron/cart/model";
 import { CART_FRACTION_DIGITS } from "./constants";
 
 export default function Cart() {
-    const controller = ZenRedux.hooks.useController( 'Cart/Controller' ) as ICartState,
+    const controller = ZenRedux.hooks.useController( "Cart/Controller" ) as ICartState,
         items = controller.items,
         total = controller.total,
         isCartEmpty = items.length === 0,
-        totalClass = isCartEmpty ? 'total' : 'total open';
+        totalClass = isCartEmpty ? "total" : "total open";
 
     return <div className="cart">
         { isCartEmpty ? <h1 id="empty">Your cart is empty.</h1> :
@@ -25,8 +25,8 @@ export default function Cart() {
 
         { ! isCartEmpty ?
             <button className="checkout bg-info"
-                    onClick={ () => ZenRedux.managers.routes.to( 'Pages/Controller/Checkout' ) }>
+                onClick={ () => ZenRedux.managers.routes.to( "Pages/Controller/Checkout" ) }>
                 CHECKOUT
             </button> : null }
-    </div>
+    </div>;
 }

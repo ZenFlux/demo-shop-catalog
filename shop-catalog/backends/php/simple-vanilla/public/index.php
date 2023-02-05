@@ -14,7 +14,7 @@ header( 'Access-Control-Allow-Origin: http://localhost:3000' );
 header( 'Access-Control-Allow-Headers:X-Request-With, Content-Type' );
 header( 'Access-Control-Allow-Credentials: true' ); // for cookies
 
-header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS, PATCH' );
+header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS, PATCH, DELETE' );
 
 if ( $_SERVER['REQUEST_METHOD'] === 'OPTIONS' ) {
 	exit();
@@ -29,7 +29,7 @@ if ( $cmd == 'phpinfo' ) {
 
 $command = new Command();
 
-if ( in_array( $_SERVER['REQUEST_METHOD'], [ 'POST', 'PATCH' ] ) ) {
+if ( in_array( $_SERVER['REQUEST_METHOD'], [ 'POST', 'PATCH', 'DELETE' ] ) ) {
 	$command->parse( $cmd );
 	$command->setParameters( (array) json_decode( file_get_contents( 'php://input' ) ) );
 } else if ( $_SERVER['REQUEST_METHOD'] === 'GET' ) {

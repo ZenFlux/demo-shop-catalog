@@ -5,11 +5,11 @@ import CartController from "../controller";
 
 export class UpdateTotal extends ZenCore.commandBases.CommandInternal {
     static getName() {
-        return 'Cart/Internal/UpdateTotal';
+        return "Cart/Internal/UpdateTotal";
     }
 
     async apply() {
-        const controller = ZenCore.managers.controllers.get( 'Cart/Controller' ) as CartController,
+        const controller = ZenCore.managers.controllers.get( "Cart/Controller" ) as CartController,
             { items } = controller.getState();
 
         let total = 0;
@@ -19,7 +19,9 @@ export class UpdateTotal extends ZenCore.commandBases.CommandInternal {
         }
 
         // Update the store.
-        ZenRedux.store.getStore().dispatch( controller.getSlice().actions.updateTotal( total ) )
+        ZenRedux.store.getStore().dispatch(
+            controller.getSlice().actions.updateTotal( total )
+        );
     }
 
 }

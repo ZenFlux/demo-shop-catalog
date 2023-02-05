@@ -4,19 +4,19 @@ import { ICartState } from "@internal/iron/cart/model";
 
 import { CART_FRACTION_DIGITS } from "@internal/iron/cart/constants";
 
-import './checkout.css';
+import "./checkout.css";
 
 export default function Checkout() {
-    const controller = ZenRedux.hooks.useController( 'Cart/Controller' ) as ICartState;
+    const controller = ZenRedux.hooks.useController( "Cart/Controller" ) as ICartState;
 
     if ( ! controller.items.length ) {
         return <div className="container">
             <h1>Cart is empty</h1>
-        </div>
+        </div>;
     }
 
     const removeItem = ( id: number ) =>
-        ZenCore.managers.commands.run( 'Cart/Item/Commands/Remove', { id } );
+        ZenCore.managers.commands.run( "Cart/Item/Commands/Remove", { id } );
 
     return (
         <div id="checkout">
@@ -36,7 +36,7 @@ export default function Checkout() {
                                 <div className="item">
                                     <div className="product-image">
                                         <img className="product-frame" src={ `img/product-${ item.id }.jpg` }
-                                             alt={ item.name || '' }/>
+                                            alt={ item.name || "" }/>
                                     </div>
 
                                     <div className="product-details">
@@ -47,15 +47,15 @@ export default function Checkout() {
                                 <div className="price">{ item.price }</div>
                                 <div className="quantity">
                                     <input type="number" defaultValue={ item.amount } min="1"
-                                           className="quantity-field"/>
+                                        className="quantity-field"/>
                                 </div>
                                 <div
-                                    className="subtotal">{ ( (item.amount || 1 ) * ( parseInt( item.price ) ) ).toFixed( CART_FRACTION_DIGITS ) }</div>
+                                    className="subtotal">{ ( ( item.amount || 1 ) * ( parseInt( item.price ) ) ).toFixed( CART_FRACTION_DIGITS ) }</div>
                                 <div className="remove">
-                                    <button onClick={() => removeItem( item.id )}>Remove</button>
+                                    <button onClick={ () => removeItem( item.id ) }>Remove</button>
                                 </div>
                             </div>
-                        )
+                        );
                     } ) }
                 </div>
             </div>

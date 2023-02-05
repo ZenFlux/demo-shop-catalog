@@ -1,10 +1,10 @@
 import ZenCore from "@zenflux/core";
 
-import { ICatalogItem } from "@internal/iron/catalog/model";
+import { ICatalogItem } from "../model";
 
 export class Add extends ZenCore.commandBases.CommandBase {
     static getName() {
-        return 'Catalog/Item/Commands/Add';
+        return "Catalog/Item/Commands/Add";
     }
 
     apply( args = {} as ICatalogItem ) {
@@ -12,6 +12,6 @@ export class Add extends ZenCore.commandBases.CommandBase {
             args.amount = 1;
         }
 
-        ZenCore.managers.internal.run( 'Catalog/Internal/Add', args );
+        ZenCore.managers.internal.run( "Catalog/Internal/Add", args );
     }
 }

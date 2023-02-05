@@ -10,10 +10,10 @@ import setupHooks from "./setup-hooks";
 
 import { defaultAppArgs, IAppArgs } from "./app-model";
 
-export const appInit = async ( App: () => JSX.Element, args: IAppArgs = defaultAppArgs  ) => {
+export const appInit = async ( App: () => JSX.Element, args: IAppArgs = defaultAppArgs ) => {
 
     if ( args.shouldRegisterControllers ) {
-        Object.values( await import( './controllers') ).forEach(
+        Object.values( await import( "./controllers") ).forEach(
             ( controller ) => ZenCore.managers.controllers.register( new controller() )
         );
     }
@@ -24,7 +24,7 @@ export const appInit = async ( App: () => JSX.Element, args: IAppArgs = defaultA
 
     const store = ZenRedux.store.initStore(),
         root = ReactDOM.createRoot(
-            document.getElementById( 'root' ) as HTMLElement
+            document.getElementById( "root" ) as HTMLElement
         );
 
     root.render(
