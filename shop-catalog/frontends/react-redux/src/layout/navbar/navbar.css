@@ -1,0 +1,53 @@
+.navbar #logo h2 {
+    cursor: pointer;
+}
+
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.navbar li {
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar li h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+.navbar #toggle {
+    float: right;
+}
+
+.navbar #toggle img {
+    width: 35px;
+    height: 35px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.navbar #toggle .spinner {
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar #toggle .amount {
+    position: relative;
+    bottom: 8px;
+    font-size: 13px;
+    color: white;
+    font-weight: 500;
+    line-height: 0px;
+    border-radius: 50%;
+    padding: 2px 7px;
+}

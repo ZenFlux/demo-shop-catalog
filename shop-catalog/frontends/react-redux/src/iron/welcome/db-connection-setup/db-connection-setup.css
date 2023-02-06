@@ -1,0 +1,51 @@
+.db-connection-form {
+    padding: 20px;
+    text-align: center;
+    width: 400px;
+    margin: 20px auto;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+.db-connection-form .form-group {
+    margin-bottom: 20px;
+}
+
+.db-connection-form label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.db-connection-form #skip_db_creation,
+.db-connection-form input[type="checkbox"] {
+    text-align: left;
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+}
+
+.db-connection-form input[type="text"],
+.db-connection-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    margin-bottom: 20px;
+}
+
+.db-connection-form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: lightblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.db-connection-form button[type="submit"]:hover {
+    background-color: blue;
+}

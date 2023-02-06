@@ -1,0 +1,328 @@
+/* Copyrights https://codepen.io/khurramalvi/pen/EKRQJZ */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600);
+
+.page #checkout a {
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+}
+
+.page #checkout {
+    background-color: #fff;
+    color: #666;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0 auto;
+}
+
+.page #checkout a {
+    border: 0 none;
+    outline: 0;
+    text-decoration: none;
+}
+
+.page #checkout strong {
+    font-weight: bold;
+}
+
+.page #checkout p {
+    margin: 0.75rem 0 0;
+}
+
+.page #checkout h1 {
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.page #checkout input,
+.page #checkout button {
+    border: 0 none;
+    outline: 0 none;
+}
+
+.page #checkout button {
+    background-color: #666;
+    color: #fff;
+}
+
+.page #checkout button:hover,
+.page #checkout button:focus {
+    background-color: #555;
+}
+
+.page #checkout img,
+.page #checkout .basket-module,
+.page #checkout .basket-labels,
+.page #checkout .basket-product {
+    width: 100%;
+}
+
+.page #checkout input,
+.page #checkout button,
+.page #checkout .basket-module,
+.page #checkout .basket-labels,
+.page #checkout .item,
+.page #checkout .price,
+.page #checkout .quantity,
+.page #checkout .subtotal,
+.page #checkout .basket-product,
+.page #checkout .product-image,
+.page #checkout .product-details {
+    float: left;
+}
+
+.page #checkout .quantity {
+    padding-right: 80px;
+}
+
+.page #checkout .price:before,
+.page #checkout .subtotal:before,
+.page #checkout .subtotal-value:before,
+.page #checkout .total-value:before,
+.page #checkout .promo-value:before {
+    content: '$';
+}
+
+.page #checkout .hide {
+    display: none;
+}
+
+.page #checkout .container {
+    clear: both;
+    font-size: 1rem;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 1rem 0;
+}
+
+.page #checkout .page #checkout .basket,
+.page #checkout .page #checkout aside {
+    padding: 0 1rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.page #checkout .basket {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.page #checkout .basket-module {
+    color: #111;
+}
+
+.page #checkout label {
+    display: block;
+    margin-bottom: 0.3125rem;
+}
+
+.page #checkout .basket-labels {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-top: 1.625rem;
+}
+
+.page #checkout ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.page #checkout li {
+    color: #111;
+    display: inline-block;
+    padding: 0.625rem 0;
+}
+
+.page #checkout li.price:before,
+.page #checkout li.subtotal:before {
+    content: '';
+}
+
+.page #checkout .item {
+    width: 55%;
+}
+
+.page #checkout .price,
+.page #checkout .quantity,
+.page #checkout .subtotal {
+    width: 15%;
+}
+
+.page #checkout .subtotal {
+    text-align: right;
+}
+
+.page #checkout .remove {
+    bottom: 1.125rem;
+    float: right;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    width: 45%;
+}
+
+.page #checkout .remove button {
+    background-color: transparent;
+    color: #777;
+    float: none;
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+
+.page #checkout .item-heading {
+    padding-left: 7.775rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.page #checkout .basket-product {
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+    position: relative;
+}
+
+.page #checkout .product-image {
+    width: 35%;
+}
+
+.page #checkout .product-details {
+    width: 65%;
+}
+
+.page #checkout .product-frame {
+    border: 1px solid #aaa;
+}
+
+.page #checkout .product-details {
+    padding: 0 1.5rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.page #checkout .quantity-field {
+    background-color: #ccc;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 2px;
+    width: 3.75rem;
+    text-align: center;
+}
+
+.page #checkout aside {
+    float: right;
+    position: relative;
+    width: 25%;
+}
+
+.page #checkout .subtotal-title,
+.page #checkout .subtotal-value,
+.page #checkout .total-title,
+.page #checkout .total-value,
+.page #checkout .promo-title,
+.page #checkout .promo-value {
+    color: #111;
+    float: left;
+    width: 50%;
+}
+
+.page #checkout .promo-title {
+    float: left;
+    width: 70%;
+}
+
+.page #checkout .promo-value {
+    color: #8B0000;
+    float: left;
+    text-align: right;
+    width: 30%;
+}
+
+.page #checkout .subtotal-value,
+.page #checkout .total-value {
+    text-align: right;
+}
+
+.page #checkout .total-title {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.page #checkout .checkout-cta {
+    display: block;
+    float: none;
+    font-size: 0.75rem;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0.625rem 0;
+    width: 100%;
+}
+
+@media screen and (max-width: 640px) {
+    .page #checkout aside,
+    .page #checkout .item,
+    .page #checkout .remove {
+        width: 100%;
+    }
+
+    .page #checkout .basket-labels {
+        display: none;
+    }
+
+    .page #checkout .item {
+        margin-bottom: 1rem;
+    }
+
+    .page #checkout .product-image {
+        width: 40%;
+    }
+
+    .page #checkout .product-details {
+        width: 60%;
+    }
+
+    .page #checkout .price,
+    .page #checkout .subtotal {
+        width: 33%;
+    }
+
+    .page #checkout .quantity {
+        text-align: center;
+        width: 34%;
+    }
+
+    .page #checkout .quantity-field {
+        float: none;
+    }
+
+    .page #checkout .remove {
+        bottom: 0;
+        text-align: left;
+        margin-top: 0.75rem;
+        position: relative;
+    }
+
+    .page #checkout .remove button {
+        padding: 0;
+    }
+}
+
+@media screen and (min-width: 641px) and (max-width: 960px) {
+    .page #checkout aside {
+        padding: 0 1rem 0 0;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .page #checkout .container {
+        width: 100%;
+    }
+
+    .product-details {
+        padding: 0 1rem;
+    }
+}
