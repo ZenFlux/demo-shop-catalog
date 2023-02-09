@@ -1,10 +1,10 @@
 import ZenCore from "@zenflux/core";
 import ZenRedux from "@zenflux/redux";
 
-import { IAPIConfig } from "@zenflux/core/src/interfaces/config";
-
 import { appInit } from "./app-init";
 import { setResponseHandlers } from "./response-handlers";
+
+import config from "./config";
 
 import WelcomeController from "./iron/welcome/controller";
 
@@ -46,9 +46,7 @@ async function initWelcome( error: any ) {
     } );
 }
 
-ZenCore.initialize( {
-    baseURL: "http://localhost:8000",
-} as IAPIConfig );
+ZenCore.initialize( config );
 
 ZenRedux.initialize( {} );
 

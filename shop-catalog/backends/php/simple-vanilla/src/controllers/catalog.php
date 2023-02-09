@@ -39,4 +39,26 @@ class Catalog extends Catalog_Base {
 	public function get( string $ids ): array {
 		return $this->catalog_model->get_by_ids( explode( ',', $ids ) );
 	}
+
+    /**
+     * Function get_product_image() : Get product image for specific id.
+     *
+     * @param int $id
+     *
+     * @return array
+     */
+    public function get_product_image( int $id ): array {
+        $image_path = sprintf( \Config\Catalog::IMAGE_PATH_FORMAT, $id );
+
+        if ( file_exists( $image_path ) ) {
+            header( 'Content-Type: image/jpeg' );
+
+            exit( file_get_contents( $image_path ) );
+        }
+
+        return [
+            'success' => false,
+            'error' => 'Image not found',
+        ];
+    }
 }

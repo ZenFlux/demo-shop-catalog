@@ -13,7 +13,7 @@ class Cart extends Catalog_Base {
 	/**
 	 * Contains all products in cart.
 	 */
-	private array $cart;
+	private array $cart = [];
 
 	/**
 	 * Function __construct() : Create Cart Controller.

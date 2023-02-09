@@ -6,12 +6,14 @@ import { ICatalogItemProps } from "./model";
 
 import "./item.css";
 
+import config from "@internal/config";
+
 /**
  * setAmount in state here for not causing re-rendering of the whole catalog.
  */
 function ItemComponent( data: ICatalogItemProps ): JSX.Element {
     const { id, name, price } = data,
-        src = "img/product-" + id + ".jpg";
+        imageURL = config.baseURL + `/catalog/get_product_image/${ id }`;// TODO this line is repeated, make common item.
 
     const onChange = ( event: ChangeEvent<HTMLInputElement> ) => {
         const amount = parseInt( event?.target?.value || "1" );
@@ -28,7 +30,7 @@ function ItemComponent( data: ICatalogItemProps ): JSX.Element {
 
     return (
         <div className="product">
-            <img src={ src } alt={ "product" + id }/>
+            <img src={ imageURL } alt={ "product" + id }/>
             <h4 className="name color-secondary">{ name }</h4>
 
             <div className="footer">
