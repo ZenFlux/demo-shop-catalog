@@ -18,7 +18,7 @@ shop-catalog uses both
 - Redux
 
 ### Live
-http://inewlegend.com/react-shop-catalog/
+[http://inewlegend.com/react-shop-catalog/](http://inewlegend.com/zenflux/demos/shop-catalog/frontends/react-redux/build/)
 
 ### What inside
 - _Controllers_:
