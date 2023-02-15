@@ -17,6 +17,9 @@ shop-catalog uses both
 - React
 - Redux
 
+### Live
+http://inewlegend.com/react-shop-catalog/
+
 ### What inside
 - _Controllers_:
     - **Cart/Controller** - To handle cart items.
