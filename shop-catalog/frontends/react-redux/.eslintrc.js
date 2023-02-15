@@ -44,6 +44,8 @@ module.exports = {
             "error",
             "always"
         ],
+        "no-debugger": "warn",
+        "prefer-const": "warn",
         "react/react-in-jsx-scope": "off",
         "@typescript-eslint/no-empty-function": "off",
     },
