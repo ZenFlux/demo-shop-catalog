@@ -5,17 +5,16 @@ import { IPageTransactionProps } from "./model";
 import "./page-transaction.css";
 
 export default function PageTransaction( props: IPageTransactionProps ) {
-    const [ transition, setTransition ] = React.useState( true );
+    const [ transition, setTransition ] = React.useState( true ),
+        timeout = React.useRef( false );
 
-    React.useEffect( () => {
-        setTransition( true );
+    if ( ! timeout.current ) {
+        timeout.current = true;
 
-        const timeout = setTimeout( () => {
+        setTimeout( () => {
             setTransition( false );
         }, props.timeout );
-
-        return () => clearTimeout( timeout );
-    }, [ props.children, props.timeout ] );
+    }
 
     return (
         <div className={ `page-transition ${ transition && "out" }` }>

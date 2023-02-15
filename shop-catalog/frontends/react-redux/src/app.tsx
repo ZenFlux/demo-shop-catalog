@@ -5,12 +5,8 @@ import Sidebar from "./layout/sidebar/sidebar";
 
 import Pages from "./pages/pages";
 
-import { useEffect } from "react";
-
 function App() {
-    useEffect( () => {
-        ZenRedux.managers.routes.to( "Pages/Controller/Catalog" );
-    } );
+    ZenRedux.managers.routes.to( "Pages/Controller/Catalog" );
 
     return (
         <>
