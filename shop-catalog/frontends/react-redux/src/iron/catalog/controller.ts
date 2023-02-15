@@ -27,7 +27,7 @@ export class CatalogController extends ZenRedux.core.Controller {
             }
         };
 
-        ZenCore.managers.commands.onAfter( "Components/Pagination/Controller/Set", onPageChange.bind( this ) );
+        ZenCore.managers.commands.onAfter( "Components/Pagination/Controller/Commands/Set", onPageChange.bind( this ) );
     }
 
     getData() {
