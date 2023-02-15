@@ -4,19 +4,18 @@ import { IPublicCommandPaginationExtendArgs } from "../model";
 
 export class Extend extends ZenCore.commandBases.CommandPublic {
     static getName() {
-        return "Components/Pagination/Controller/Extend";
+        return "Components/Pagination/Controller/Commands/Extend";
     }
 
     apply( args: IPublicCommandPaginationExtendArgs ) {
-        const { type, offsetState, maxVisiblePages } = args,
-            [ offset, setOffset ] = offsetState;
+        const { type, range, offset, setOffset } = args;
 
         switch ( type ) {
         case "next":
-            setOffset( offset + maxVisiblePages );
+            setOffset( offset + range );
             break;
         case "prev":
-            setOffset( offset - maxVisiblePages );
+            setOffset( offset - range );
             break;
         }
     }

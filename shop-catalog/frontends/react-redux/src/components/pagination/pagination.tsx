@@ -1,68 +1,71 @@
 import React from "react";
 
 import ZenCore from "@zenflux/core";
-import ZenRedux from "@zenflux/redux";
 
 import { ExtendType, IPaginationProps } from "./model";
 
 import "./pagination.css";
 
 export default function Pagination( props: IPaginationProps ): JSX.Element {
-    const offsetState = React.useState( 0 ),
+    const isRendered = React.useRef( false );
+
+    const offsetState = React.useState( -1 ),
         [ offset, setOffset ] = offsetState;
 
-    const prevOffset = ZenRedux.hooks.usePrevious( offset );
+    let newOffset = offset;
 
     const onExtend = ( type: ExtendType ) => {
-        ZenCore.managers.commands.run( "Components/Pagination/Controller/Extend", {
+        ZenCore.managers.commands.run( "Components/Pagination/Controller/Commands/Extend", {
             type,
-            offsetState,
-            maxVisiblePages: props.maxVisiblePages,
+            setOffset,
+            offset: newOffset,
+            range: props.maxVisiblePages,
             controller: props.controller,
         } );
     };
 
     const onChange = ( page: number ) => {
-        ZenCore.managers.commands.run( "Components/Pagination/Controller/Set", {
+        ZenCore.managers.commands.run( "Components/Pagination/Controller/Commands/Set", {
             page,
             controller: props.controller,
         } );
     };
 
-    const inRange = function ( active: number, min: number, max: number ) {
-        return ( active >= min && active < max );
-    };
+    // Used to update the offset from `extend` command, when new offset is 0.
+    if ( -1 === newOffset ) {
+        newOffset = 0;
+    }
 
-    const updateExtendOffset = () => {
-        // TODO: Should be a better way, prevOffset not the best practice.
-        if ( prevOffset !== undefined && offset !== prevOffset ) {
-            return;
-        }
+    // If not rendered yet, means its first render of page change, in this case we need to update the offset.
+    if ( ! isRendered.current ) {
+        const getOffsetRange = ( offset:number, max:number ) => max * ( offset / max );
 
-        let offsetRange = offset;
+        const isOffsetInRange = ( page: number, offset: number, max: number ) =>
+            page >= offset && page < ( offset + max );
 
-        do {
-            if ( props.currentPage === offsetRange ) {
+        const updateOffsetRange = () => {
+            if ( 0 === props.currentPage ) {
                 return;
             }
 
-            if ( ! props.currentPage ) {
-                offsetRange = 0;
-            } else if ( props.currentPage > offsetRange ) {
-                offsetRange += props.maxVisiblePages;
-            } else {
-                offsetRange -= props.maxVisiblePages;
-            }
+            do {
+                if ( props.currentPage > newOffset ) {
+                    newOffset += props.maxVisiblePages;
+                    continue;
+                }
 
-        } while ( ! inRange( props.currentPage, offsetRange, offsetRange + props.maxVisiblePages ) );
+                newOffset = 0;
 
-        if ( prevOffset !== offsetRange ) {
-            setOffset( offsetRange );
-        }
-    };
+                break;
+            } while ( ! isOffsetInRange( props.currentPage, newOffset, props.maxVisiblePages ) );
 
-    // TODO: Check other hooks compatibility to here.
-    React.useEffect( () => updateExtendOffset(), [ offset, updateExtendOffset ] );
+            newOffset = getOffsetRange( newOffset, props.maxVisiblePages );
+        };
+
+        updateOffsetRange();
+    }
+
+    isRendered.current = true;
 
     const pageItems = [],
         visualLimit = props.totalPages > props.maxVisiblePages ? props.maxVisiblePages : props.totalPages;
@@ -70,7 +73,7 @@ export default function Pagination( props: IPaginationProps ): JSX.Element {
     let breakFlag = false;
 
     for ( let i = 0; i < visualLimit; i++ ) {
-        const id = offset + i;
+        const id = newOffset + i;
 
         if ( id > ( props.totalPages - 1 ) ) {
             breakFlag = true;
@@ -84,8 +87,8 @@ export default function Pagination( props: IPaginationProps ): JSX.Element {
         );
     }
 
-    const shouldExtendNext = ! breakFlag && ( offset + props.totalPages ) >= props.maxVisiblePages,
-        shouldExtendPrev = offset >= props.maxVisiblePages;
+    const shouldExtendNext = ! breakFlag && ( newOffset + props.totalPages ) >= props.maxVisiblePages,
+        shouldExtendPrev = newOffset >= props.maxVisiblePages;
 
     const prev = <li className="page-item">
         <button disabled={ props.currentPage === 0 } className="page-link"

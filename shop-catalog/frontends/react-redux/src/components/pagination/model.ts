@@ -4,8 +4,6 @@ import ZenCore from "@zenflux/core";
 
 export type ExtendType = "prev" | "next";
 
-export type OffsetStateType = [ number, React.Dispatch<React.SetStateAction<number>> ];
-
 export interface IPaginationProps {
     maxVisiblePages: number;
     currentPage: number;
@@ -15,8 +13,9 @@ export interface IPaginationProps {
 
 export interface IPublicCommandPaginationExtendArgs {
     type: ExtendType,
-    offsetState: OffsetStateType,
-    maxVisiblePages: number,
+    range: number;
+    offset: number;
+    setOffset: React.Dispatch<React.SetStateAction<number>>;
     controller: ZenCore.core.Controller,
 }
 
