@@ -4,6 +4,8 @@ import { ICartState } from "@internal/iron/cart/model";
 
 import { CART_FRACTION_DIGITS } from "@internal/iron/cart/constants";
 
+import config from "@internal/config";
+
 import "./checkout.css";
 
 export default function Checkout() {
@@ -35,7 +37,7 @@ export default function Checkout() {
                             <div className="basket-product" key={ index }>
                                 <div className="item">
                                     <div className="product-image">
-                                        <img className="product-frame" src={ `img/product-${ item.id }.jpg` }
+                                        <img className="product-frame" src={ config.baseURL + `/catalog/get_product_image/${ item.id }` } // TODO this line is repeated, make common item
                                             alt={ item.name || "" }/>
                                     </div>
 
