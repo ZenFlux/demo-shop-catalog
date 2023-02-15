@@ -36,7 +36,7 @@ export default function Pagination( props: IPaginationProps ): JSX.Element {
         newOffset = 0;
     }
 
-    // If not rendered yet, means its first render of page change, in this case we need to update the offset.
+    // If not rendered yet, means its first render or page change, in this case we need to update the offset.
     if ( ! isRendered.current ) {
         const getOffsetRange = ( offset:number, max:number ) => max * ( offset / max );
 
