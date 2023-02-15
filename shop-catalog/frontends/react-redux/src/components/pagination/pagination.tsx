@@ -31,7 +31,7 @@ export default function Pagination( props: IPaginationProps ): JSX.Element {
         } );
     };
 
-    // Used to update the offset from `extend` command, when new offset is 0.
+    // Since each page change, pagination may re-render, to back to lower offset of 0 is not possible if the default offset is 0.
     if ( -1 === newOffset ) {
         newOffset = 0;
     }
