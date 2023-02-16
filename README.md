@@ -58,7 +58,7 @@ http://inewlegend.com/zenflux/demos/shop-catalog/frontends/react-redux/build/
 # Installation
 ### Get the repo:
 ```shell
-git clone https://github.com/ZenFlux/demos
+git clone https://github.com/ZenFlux/demo-shop-catalog
 ```
 
 ### Enter repo folder:
