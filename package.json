@@ -12,8 +12,8 @@
 	"license": "MIT",
 	"author": "Leonid Vinikov",
 	"scripts": {
-		"postinstall": "cd shop-catalog/frontends/react-redux/ && npm install",
-		"shop-catalog:backends:php:vanila:start": "cd ./shop-catalog/backends/php/simple-vanilla/ && ./run",
-		"shop-catalog:frontends:react:start": "cd ./shop-catalog/frontends/react-redux/ && npm start"
+		"postinstall": "cd frontends/react-redux/ && npm install",
+		"backends:php:vanila:start": "cd ./backends/php/simple-vanilla/ && ./run",
+		"frontends:react:start": "cd ./frontends/react-redux/ && npm start"
 	}
 }

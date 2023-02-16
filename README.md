@@ -68,12 +68,12 @@ npm install
 
 ### Run the backend:
 ```shell
-npm run shop-catalog:backends:php:vanila:start
+npm run backends:php:vanila:start
 ```
 
 ### Turn on new session & enter frontend folder:
 ```shell
-npm run shop-catalog:frontends:react:start
+npm run frontends:react:start
 ```
 
 ### Enter the frontend:
