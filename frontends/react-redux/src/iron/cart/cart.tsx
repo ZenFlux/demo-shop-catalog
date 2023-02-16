@@ -3,6 +3,7 @@ import ZenRedux from "@zenflux/redux";
 import Item from "./item/item";
 
 import { ICartState } from "@internal/iron/cart/model";
+import { ICartItem } from "@internal/iron/cart/item/model";
 
 import { CART_FRACTION_DIGITS } from "./constants";
 
@@ -20,7 +21,7 @@ export default function Cart() {
                     <h2>TOTAL</h2>
                     <h3><span className="price">{ total.toFixed( CART_FRACTION_DIGITS ) }</span></h3>
                 </li>
-                { items.map( ( item: any ) => <Item key={ item?.id } { ...item }  /> ) }
+                { items.map( ( item: ICartItem ) => <Item key={ item?.id } { ...item }  /> ) }
             </ul> }
 
         { ! isCartEmpty ?

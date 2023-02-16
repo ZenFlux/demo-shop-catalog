@@ -10,7 +10,7 @@ import WelcomeController from "./iron/welcome/controller";
 
 import "./css/index.css";
 
-async function initApp( data: any ) {
+async function initApp( data: any ) { // eslint-disable-line @typescript-eslint/no-explicit-any
     if ( data.success ) {
         const App = ( await import( "./app" ) ).default;
 
@@ -20,7 +20,7 @@ async function initApp( data: any ) {
     alert( "Something went wrong" );
 }
 
-async function initWelcome( error: any ) {
+async function initWelcome( error: any ) { // eslint-disable-line @typescript-eslint/no-explicit-any
     const WelcomeComponent = ( await import( "./iron/welcome/welcome" ) ).default;
 
     const promise = appInit( WelcomeComponent, {

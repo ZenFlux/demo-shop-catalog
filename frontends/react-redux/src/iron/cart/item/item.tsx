@@ -2,13 +2,13 @@ import React from "react";
 
 import ZenCore from "@zenflux/core";
 
-import { IItem } from "../item/model";
+import { ICartItem } from "../item/model";
 
 import { CART_FRACTION_DIGITS } from "../constants";
 
 import config from "@internal/config";
 
-export default function Item( props: IItem ): JSX.Element {
+export default function Item( props: ICartItem ): JSX.Element {
     const sum = parseFloat( props.price ) * ( props.amount || 1 ),
         imageURL = config.baseURL + `/catalog/get_product_image/${ props.id }`, // TODO this line is repeated, make common item.
         removeItem = () =>

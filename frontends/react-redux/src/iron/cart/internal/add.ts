@@ -3,7 +3,7 @@ import ZenRedux from "@zenflux/redux";
 
 import CartController from "../controller";
 
-import { IItem } from "../item/model";
+import { ICartItem } from "../item/model";
 import { IInternalCommandCartAddArgs } from "../model";
 
 export class Add extends ZenCore.commandBases.CommandInternal {
@@ -16,7 +16,7 @@ export class Add extends ZenCore.commandBases.CommandInternal {
 
         const controller = ZenCore.managers.controllers.get( "Cart/Controller" ) as CartController,
             { items } = controller.getState(),
-            item = items.find( ( item: IItem ) => item.id === args.id ),
+            item = items.find( ( item: ICartItem ) => item.id === args.id ),
             slice = controller.getSlice(),
             store = ZenRedux.store.getStore();
 

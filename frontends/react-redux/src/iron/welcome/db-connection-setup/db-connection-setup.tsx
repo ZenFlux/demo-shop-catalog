@@ -40,7 +40,7 @@ const DbConnectionSetup = (): JSX.Element => {
             skip_create: skipDBCreation,
         } );
 
-        promise.then( ( response: any ) => {
+        promise.then( ( response: any ) => { // eslint-disable-line @typescript-eslint/no-explicit-any
             if ( response.success ) {
                 setMessage( "Database connection established successfully" );
 
@@ -50,7 +50,7 @@ const DbConnectionSetup = (): JSX.Element => {
             setMessage( "Something went wrong." );
         } );
 
-        promise.catch( ( result: any ) => {
+        promise.catch( ( result: any ) => { // eslint-disable-line @typescript-eslint/no-explicit-any
             if ( result.error ) {
                 setMessage( result.message );
             } else {

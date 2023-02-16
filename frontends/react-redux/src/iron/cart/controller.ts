@@ -1,9 +1,9 @@
 import ZenCore from "@zenflux/core";
 import ZenRedux from "@zenflux/redux";
 
-import { PayloadAction, Slice } from "@reduxjs/toolkit";
+import { Slice } from "@reduxjs/toolkit";
 
-import { IItem } from "./item/model";
+import { ICartItem } from "./item/model";
 import { ICartReducers, ICartState } from "./model";
 
 import * as data from "./data";
@@ -66,12 +66,13 @@ export class CartController extends ZenRedux.core.Controller {
             removeItem: ( state, action ) => {
                 state.items = state.items.filter( ( item ) => item.id !== action.payload.id );
             },
-            updateItem: ( state, action: PayloadAction<any> ) => {
-                // TODO: Something wrong here.
-                const item = state.items.find( ( item: IItem ) => item.id === action.payload.id );
+            updateItem: ( state, action ) => {
+                const item = state.items.find( ( item: ICartItem ) => item.id === action.payload.id );
 
-                if ( item ) {
+                if ( item && item.amount && action.payload.amount ) {
                     item.amount += action.payload.amount;
+                } else {
+                    throw new Error( "Item not found or amount not set." );
                 }
             },
             updateTotal: ( state, action ) => {
@@ -88,7 +89,7 @@ export class CartController extends ZenRedux.core.Controller {
     }
 
     getSlice() {
-        return super.getSlice() as Slice<any, ICartReducers>;
+        return super.getSlice() as Slice<ICartState, ICartReducers>;
     }
 }
 

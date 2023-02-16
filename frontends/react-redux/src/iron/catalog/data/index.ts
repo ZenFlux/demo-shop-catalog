@@ -3,11 +3,9 @@ import ZenRedux from "@zenflux/redux";
 
 import CatalogController from "@internal/iron/catalog/controller";
 
-import { IDataCommandCatalogIndexArgs, IDataCommandCatalogIndexOptions } from "../model";
-import { ICatalogItem } from "@internal/iron/catalog/item/model";
+import { IDataCommandCatalogIndexResult } from "../model";
 
 export class Index extends ZenCore.commandBases.CommandData {
-    static localCatalog: ICatalogItem[] = [];
 
     static getName() {
         return "Catalog/Data/Index";
@@ -17,22 +15,13 @@ export class Index extends ZenCore.commandBases.CommandData {
         return "catalog/index/{page}";
     }
 
-    apply( args = {} as IDataCommandCatalogIndexArgs, options = {} as IDataCommandCatalogIndexOptions ): any {
-        const { query } = args;
-
-        if ( options.local && Index.localCatalog.length ) {
-            if ( query?.id ) {
-                return Index.localCatalog.find( ( item ) => item.id === query.id );
-            }
-
-            return Index.localCatalog;
-        }
-
+    apply( args = {}, options = {} ): Promise<IDataCommandCatalogIndexResult> {
         const result = super.apply( args, options );
 
         if ( result.then ) {
-            result.then( ( result: any ) => {
-                Index.localCatalog = result.result;
+            result.then( ( result: IDataCommandCatalogIndexResult ) => {
+                // Save current page into memory.
+                CatalogController.localCatalog = result.result;
             } );
         }
 
@@ -40,15 +29,8 @@ export class Index extends ZenCore.commandBases.CommandData {
     }
 
     onBeforeApply() {
-        // Should be in the controller, because its bypassing dispatch.
-        const args = this.getArgs() as IDataCommandCatalogIndexArgs,
-            options = this.getOptions() as IDataCommandCatalogIndexOptions;
-
-        if ( args.query || options.local ) {
-            return;
-        }
-
-        const controller = ZenCore.managers.controllers.get( "Catalog/Controller" ) as CatalogController;
+        // TODO: Which better this or hook?
+        const controller = Index.getController() as CatalogController;
 
         ZenRedux.store.getStore().dispatch(
             controller.getSlice().actions.clearItems()
