@@ -5,11 +5,11 @@
 namespace Config;
 
 class Database {
-	const IS_CONFIGURED = true;
+    const IS_CONFIGURED = false;
 
-	const HOST = 'localhost';
-	const NAME = 'shop_catalog';
-	const USERNAME = 'admin';
-	const PASSWORD = 'mysql';
-	const PORT = '3306';
+    const HOST = '%DB_HOST%';
+    const NAME = '%DB_NAME%';
+    const USERNAME = '%DB_USER%';
+    const PASSWORD = '%DB_PASS%';
+    const PORT = '%DB_PORT%';
 }
