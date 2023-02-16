@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import ZenCore from "@zenflux/core";
 
@@ -7,14 +7,11 @@ import WelcomeController from "../controller";
 function Error(): JSX.Element {
     const [ error, setError ] = React.useState( {} );
 
-    useEffect( () => {
-        if ( ! Object.keys( error ).length ) {
+    if ( ! Object.keys( error ).length ) {
+        const controller = ZenCore.managers.controllers.get( "Welcome/Controller" ) as WelcomeController;
 
-            const controller = ZenCore.managers.controllers.get( "Welcome/Controller" ) as WelcomeController;
-
-            setError( controller.error );
-        }
-    }, [ error ] );
+        setError( controller.error );
+    }
 
     return (
         <>

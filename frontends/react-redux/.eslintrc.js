@@ -44,6 +44,12 @@ module.exports = {
             "error",
             "always"
         ],
+        "no-multiple-empty-lines": [
+            "error",
+            {
+                max: 1,
+            }
+        ],
         "no-debugger": "warn",
         "prefer-const": "warn",
         "react/react-in-jsx-scope": "off",
