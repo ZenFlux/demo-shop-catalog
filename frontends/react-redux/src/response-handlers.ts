@@ -39,7 +39,7 @@ export const setResponseHandlers = () => {
         return written || text;
     };
 
-    const responseHandler: ZenCore.interfaces.TResponseHandlerCallbackType = ( data: any ) => {
+    const responseHandler: ZenCore.interfaces.TResponseHandlerCallbackType = ( data: any ) => { // eslint-disable-line @typescript-eslint/no-explicit-any
         if ( data?.error && ( "undefined" !== typeof data?.type || "undefined" !== typeof data?.code ) ) {
             throw data;
         }

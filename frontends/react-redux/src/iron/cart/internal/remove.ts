@@ -3,7 +3,7 @@ import ZenRedux from "@zenflux/redux";
 
 import CartController from "../controller";
 
-import { IItem } from "../item/model";
+import { ICartItem } from "../item/model";
 import { IInternalCommandCartRemoveArgs } from "../model";
 
 export class Remove extends ZenCore.commandBases.CommandInternal {
@@ -14,7 +14,7 @@ export class Remove extends ZenCore.commandBases.CommandInternal {
     async apply( args: IInternalCommandCartRemoveArgs ) {
         const controller = ZenCore.managers.controllers.get( "Cart/Controller" ) as CartController,
             { items } = controller.getState(),
-            item = items.find( ( item: IItem ) => item.id === args.id );
+            item = items.find( ( item: ICartItem ) => item.id === args.id );
 
         if ( item ) {
             ZenRedux.store.getStore().dispatch(

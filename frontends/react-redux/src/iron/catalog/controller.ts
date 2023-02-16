@@ -6,12 +6,14 @@ import ZenRedux from "@zenflux/redux";
 import * as data from "./data/";
 import * as internal from "./internal/";
 
-import { ICatalogPaginationData, ICatalogReducers, ICatalogState, IDataCommandCatalogIndexArgs } from "./model";
+import { ICatalogPaginationData, ICatalogReducers, ICatalogState, IDataCommandCatalogIndexResult } from "./model";
 
 import { IPublicCommandPaginationSetArgs } from "@internal/components/pagination/model";
 import { ICatalogItem } from "@internal/iron/catalog/item/model";
 
 export class CatalogController extends ZenRedux.core.Controller {
+    static localCatalog: ICatalogItem[] = [];
+
     static getName() {
         return "Catalog/Controller";
     }
@@ -66,14 +68,18 @@ export class CatalogController extends ZenRedux.core.Controller {
     }
 
     getSlice() {
-        return super.getSlice() as Slice<any, ICatalogReducers>;
+        return super.getSlice() as Slice<ICatalogState, ICatalogReducers>;
+    }
+
+    getLocalItem( id: number ): ICatalogItem|undefined {
+        return CatalogController.localCatalog.find( ( item ) => item.id === id );
     }
 
     // TODO Move to file.
     getCatalog( page = 0 ) {
-        const promise = ZenCore.managers.data.get( "Catalog/Data/Index", { page } as IDataCommandCatalogIndexArgs );
+        const promise = ZenCore.managers.data.get( "Catalog/Data/Index", { page }  );
 
-        promise.then( ( data: any ) => {
+        promise.then( ( data: IDataCommandCatalogIndexResult ) => {
             const store = ZenRedux.store.getStore(),
                 slice = this.getSlice();
 

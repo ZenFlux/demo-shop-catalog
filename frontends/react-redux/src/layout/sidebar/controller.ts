@@ -40,7 +40,7 @@ export class SidebarController extends ZenRedux.core.Controller {
     }
 
     getSlice() {
-        return super.getSlice() as Slice<any, ISidebarReducers>;
+        return super.getSlice() as Slice<SidebarState, ISidebarReducers>;
     }
 }
 

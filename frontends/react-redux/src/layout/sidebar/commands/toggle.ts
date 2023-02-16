@@ -8,7 +8,7 @@ export class Toggle extends ZenCore.commandBases.CommandPublic {
         return "Layout/Sidebar/Commands/Toggle";
     }
 
-    apply( args = {} ) {
+    apply() {
         const controller = ZenCore.managers.controllers.get( "Layout/Sidebar/Controller" ) as SidebarController;
 
         // Toggle the sidebar.

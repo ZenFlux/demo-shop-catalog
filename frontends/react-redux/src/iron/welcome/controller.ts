@@ -16,7 +16,7 @@ export class WelcomeController extends ZenRedux.core.RouterController {
     getRoutes() {
         return {
             "Configure": () => {},
-            "Error": ( result: any ) => this.error = result.error,
+            "Error": ( result: any ) => this.error = result.error, // eslint-disable-line @typescript-eslint/no-explicit-any
         };
     }
 }

@@ -1,4 +1,4 @@
-import { IItem } from "./item/model";
+import { ICartItem } from "./item/model";
 
 import { CaseReducer, PayloadAction, SliceCaseReducers } from "@reduxjs/toolkit";
 
@@ -20,16 +20,16 @@ export interface IInternalCommandCartRemoveArgs {
 
 export interface ICartState {
     loaded: boolean;
-    items: IItem[];
+    items: ICartItem[];
     total: number;
 }
 
 export interface ICartReducers extends SliceCaseReducers<ICartState> {
     setLoaded: CaseReducer<ICartState, PayloadAction<boolean>>;
-    setItems: CaseReducer<ICartState, PayloadAction<IItem[]>>;
-    addItem: CaseReducer<ICartState, PayloadAction<IItem>>;
-    removeItem: CaseReducer<ICartState, PayloadAction<IItem>>;
-    updateItem: CaseReducer<ICartState, PayloadAction<IItem>>;
+    setItems: CaseReducer<ICartState, PayloadAction<ICartItem[]>>;
+    addItem: CaseReducer<ICartState, PayloadAction<ICartItem>>;
+    removeItem: CaseReducer<ICartState, PayloadAction<ICartItem>>;
+    updateItem: CaseReducer<ICartState, PayloadAction<ICartItem>>;
     updateTotal: CaseReducer<ICartState, PayloadAction<number>>;
     clearItems: CaseReducer<ICartState>
 }

@@ -6,5 +6,6 @@ backups
 .DS_Store
 
 database.txt
+database.php
 
 link.config.json

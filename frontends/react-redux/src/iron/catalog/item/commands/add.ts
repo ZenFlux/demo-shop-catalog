@@ -7,7 +7,7 @@ export class Add extends ZenCore.commandBases.CommandBase {
         return "Catalog/Item/Commands/Add";
     }
 
-    apply( args = {} as ICatalogItem ) {
+    apply( args: ICatalogItem ) {
         if ( ! args.amount ) {
             args.amount = 1;
         }
